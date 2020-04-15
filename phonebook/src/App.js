@@ -13,12 +13,12 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('')
   const [showAll, setShowAll] = useState(true)
   const [filter, setFilter] = useState('')
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState(null)
 
   const personsToShow = showAll ? persons : persons.filter(person => person.name.toLowerCase().includes(filter))
 
   const Notification = ({ message }) => {
-    if (message === '') {
+    if (message === null) {
       return null
     }
 
@@ -102,6 +102,9 @@ const App = () => {
         .then(response => {
           setPersons(persons.filter(person => person.id !== id))
           setMessage(`${personToDelete.name} deleted from phonebook.`)
+          setTimeout(() => {
+            setMessage(null)
+          }, 5000)
         })
         .catch(error => {
           setMessage(
