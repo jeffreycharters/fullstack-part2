@@ -2,8 +2,8 @@ import React from 'react'
 
 const Details = ({ person, deleteHandler }) => {
     return (
-        <div>
-            {person.name}: {person.number}
+        <div className="entry">
+            {person.name}: {person.number} &nbsp;
             <button onClick={() => deleteHandler(person.id)}>Delete</button>
         </div>
     )

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import Details from './components/Details'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
@@ -30,11 +29,9 @@ const App = () => {
   }
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/api/persons')
-      .then(response => {
-        setPersons(response.data)
-      })
+    phonebookService
+      .getAll()
+      .then(allPersons => setPersons(allPersons))
   }, [])
 
 
@@ -131,8 +128,8 @@ const App = () => {
       />
 
       <h2>Numbers </h2>
-      {personsToShow.map(person =>
-        <Details key={person.name} person={person} deleteHandler={deleteHandler} />
+      {personsToShow.map((person, i) =>
+        <Details key={i} person={person} deleteHandler={deleteHandler} />
       )}
     </div>
   )
