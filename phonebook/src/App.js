@@ -31,7 +31,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/persons')
+      .get('http://localhost:3001/api/persons')
       .then(response => {
         setPersons(response.data)
       })
@@ -86,7 +86,6 @@ const App = () => {
   const handleFilterChange = (event) => {
     const filterText = event.target.value.toLowerCase()
     if (filterText.length > 0) {
-      console.log(filterText)
       setFilter(filterText)
       setShowAll(false)
     }
