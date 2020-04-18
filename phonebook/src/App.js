@@ -56,14 +56,17 @@ const App = () => {
           setPersons(persons.map(person =>
             person.name === updatedPerson.name ? updatedPerson : person))
         })
-
-      setMessage(`${person.name} number changed to ${newNumber}`)
+        .then(setMessage(`${person.name} number changed to ${newNumber}`))
     }
     else {
 
       phonebookService.create(personObject)
         .then(newPerson => {
           setPersons(persons.concat(newPerson))
+        })
+        .catch(error => {
+          console.log(error.response.data)
+          setMessage(error.response.data.error)
         })
     }
 
